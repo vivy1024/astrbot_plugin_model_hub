@@ -1,0 +1,39 @@
+{
+  "presets": {
+    "description": "已保存的模型方案（JSON）",
+    "hint": "由插件页面「模型总控台」维护，一般不需要手改。格式：{\"方案名\": {\"model\": \"...\", \"fallbacks\": [...]} 或 {\"slots\": {槽位ID: 值}}}。",
+    "type": "text",
+    "default": "{}"
+  },
+  "unknown_plugin_apply": {
+    "description": "未适配插件的生效方式",
+    "hint": "reload：与 AstrBot 配置页点保存一致，改完热重载该插件（推荐）；inplace：只改内存中的共享配置对象，插件若缓存了模型 ID 则要等下次重载才生效。",
+    "type": "string",
+    "options": ["reload", "inplace"],
+    "default": "reload"
+  },
+  "force_reload_plugins": {
+    "description": "强制走热重载的插件",
+    "hint": "即使有内置适配，也改为热重载的插件名（metadata 里的 name）。",
+    "type": "list",
+    "default": []
+  },
+  "excluded_plugins": {
+    "description": "不接管的插件",
+    "hint": "填写插件名（metadata 里的 name 或目录名），这些插件的模型字段不会出现在总控台里，也不会被一键切换改动。",
+    "type": "list",
+    "default": []
+  },
+  "include_embedding_slots": {
+    "description": "显示向量模型槽位",
+    "hint": "默认隐藏 Embedding 槽位：换向量模型通常需要重建索引，一键切换永远不会改它们。",
+    "type": "bool",
+    "default": false
+  },
+  "enable_chat_command": {
+    "description": "启用聊天指令 /模型总控",
+    "hint": "仅 AstrBot 管理员可用：查看当前模型、全切到某个模型、应用已保存方案。",
+    "type": "bool",
+    "default": true
+  }
+}

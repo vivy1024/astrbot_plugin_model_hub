@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模型总控台</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div>
+        <h1>模型总控台</h1>
+        <p class="sub" id="summary">正在读取…</p>
+      </div>
+      <button type="button" id="refresh" class="ghost">刷新</button>
+    </header>
+
+    <section class="card" aria-labelledby="switch-title">
+      <h2 id="switch-title">一键全切</h2>
+      <p class="hint">把所有已填写的对话类模型（对话、压缩、图片转述、各插件分析模型…）切到同一个模型。留空的槽位表示「跟随上级 / 用默认」，默认保持留空；语音与向量模型不受影响。</p>
+      <div class="row">
+        <label class="field grow">
+          <span>目标模型</span>
+          <select id="switch-model"></select>
+        </label>
+        <label class="field grow">
+          <span>回退链（可选，逗号分隔；留空则不改回退链）</span>
+          <input id="switch-fallbacks" list="chat-providers" autocomplete="off" placeholder="例如 nug-us/antigravity:gemini-3.8-flash-medium" />
+        </label>
+      </div>
+      <label class="check"><input type="checkbox" id="switch-include-empty" /> 留空的槽位也一起写成该模型</label>
+      <div class="actions">
+        <button type="button" id="switch-preview" class="ghost">预览改动</button>
+        <button type="button" id="switch-apply">全部切换</button>
+        <span class="spacer"></span>
+        <input id="switch-preset-name" placeholder="方案名，例如 Gemini 3.8f" aria-label="方案名" />
+        <button type="button" id="switch-save" class="ghost">存为方案</button>
+      </div>
+      <ul id="switch-diff" class="diff" hidden></ul>
+    </section>
+
+    <section class="card" aria-labelledby="preset-title">
+      <h2 id="preset-title">方案</h2>
+      <div id="presets" class="presets"></div>
+      <div class="actions">
+        <input id="capture-name" placeholder="方案名，例如 日常精细组合" aria-label="快照方案名" />
+        <button type="button" id="capture-save" class="ghost">把当前全部配置存为方案</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="slots-title">
+      <div class="section-head">
+        <h2 id="slots-title">逐项设置</h2>
+        <input id="filter" type="search" placeholder="筛选：插件 / 字段 / 模型" aria-label="筛选槽位" />
+      </div>
+      <div id="targets"></div>
+    </section>
+
+    <datalist id="chat-providers"></datalist>
+
+    <footer id="dirty-bar" class="dirty" hidden>
+      <span id="dirty-count"></span>
+      <span class="spacer"></span>
+      <button type="button" id="dirty-reset" class="ghost">放弃</button>
+      <button type="button" id="dirty-save">保存并生效</button>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
