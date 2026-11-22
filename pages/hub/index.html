@@ -65,6 +65,17 @@
       <button type="button" id="dirty-save">保存并生效</button>
     </footer>
 
+    <div id="confirm" class="overlay" hidden>
+      <div class="confirm-box" role="alertdialog" aria-modal="true" aria-labelledby="confirm-text">
+        <p id="confirm-text"></p>
+        <div class="actions">
+          <span class="spacer"></span>
+          <button type="button" id="confirm-cancel" class="ghost">取消</button>
+          <button type="button" id="confirm-ok">确定</button>
+        </div>
+      </div>
+    </div>
+
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
     <script src="/api/plugin/page/bridge-sdk.js"></script>
     <script src="./app.js"></script>

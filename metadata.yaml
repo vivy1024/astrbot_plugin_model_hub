@@ -6,7 +6,7 @@ desc: >-
   在插件页面里集中查看、逐项修改，或一键把所有对话类模型切到同一个模型；可保存多套方案随时切换。
   改动会写回各自的配置文件，并按 AstrBot 原生方式热生效（重载流水线 / 重载插件 / 插件自带热更新钩子）。
 help: /模型总控 查看当前模型；/模型总控 全切 <provider_id>；/模型总控 方案 <方案名>
-version: 1.0.1
+version: 1.0.2
 author: vivy1024
 repo: https://github.com/vivy1024/astrbot_plugin_model_hub
 social_link: https://github.com/vivy1024

@@ -204,9 +204,24 @@
     $("dirty-count").textContent = `${dirty.size} 项待保存`;
   }
 
-  function confirmRun(message, action) {
-    if (window.confirm(message)) run(action);
+  // 插件页运行在不带 allow-modals 的沙箱 iframe 里，window.confirm 会被静默忽略
+  let pendingConfirm = null;
+  function closeConfirm(ok) {
+    const action = pendingConfirm;
+    pendingConfirm = null;
+    $("confirm").hidden = true;
+    if (ok && action) run(action);
   }
+  function confirmRun(message, action) {
+    pendingConfirm = action;
+    $("confirm-text").textContent = message;
+    $("confirm").hidden = false;
+    $("confirm-ok").focus();
+  }
+  $("confirm-ok").addEventListener("click", () => closeConfirm(true));
+  $("confirm-cancel").addEventListener("click", () => closeConfirm(false));
+  $("confirm").addEventListener("click", (e) => { if (e.target === e.currentTarget) closeConfirm(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && pendingConfirm) closeConfirm(false); });
 
   function switchPayload() {
     const model = $("switch-model").value;
