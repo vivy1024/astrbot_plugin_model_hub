@@ -8,6 +8,8 @@ desc: >-
 help: /模型总控 查看当前模型；/模型总控 全切 <provider_id>；/模型总控 方案 <方案名>
 version: 1.0.0
 author: vivy1024
+repo: https://github.com/vivy1024/astrbot_plugin_model_hub
+social_link: https://github.com/vivy1024
 astrbot_version: ">=4.17.0"
 tags:
   - 模型管理
