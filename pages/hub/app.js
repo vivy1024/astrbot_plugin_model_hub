@@ -17,7 +17,7 @@
   let busy = false;
   let toastTimer = 0;
 
-  const bridge = () => window.AstrBotPluginPage;
+  const bridge = () => window.AstrBotPluginView || window.AstrBotPluginPage;
   const apiGet = (endpoint, params) => bridge().apiGet(endpoint, params || {});
   const apiPost = (endpoint, body) => bridge().apiPost(endpoint, body || {});
 
